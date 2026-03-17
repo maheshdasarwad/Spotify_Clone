@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+
+body {
+    margin:0;
+    background-color: black;
+    color: white;
+    overflow:hidden;
+}
+
+@font-face {
+  font-family: 'Conthrax';
+  src: url('/Gotham_Medium_500.tff') format('opentype');
+}
+
+/* Chrome, Edge, Safari */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.progress-bar{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Normal track */
+.progress-bar::-webkit-slider-runnable-track{
+  height:4px;
+  border-radius:10px;
+  background: linear-gradient(
+    to right,
+    white 0%,
+    white var(--progress),
+    #4d4d4d var(--progress),
+    #4d4d4d 100%
+  );
+}
+
+/* Hover → green */
+.progress-bar:hover::-webkit-slider-runnable-track{
+  background: linear-gradient(
+    to right,
+    #1DB954 0%,
+    #1DB954 var(--progress),
+    #4d4d4d var(--progress),
+    #4d4d4d 100%
+  );
+}
+
+/* Thumb */
+.progress-bar::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  height:12px;
+  width:12px;
+  border-radius:50%;
+  background:white;
+  margin-top:-4px;
+  opacity:0;
+}
+
+/* Show thumb on hover */
+.progress-bar:hover::-webkit-slider-thumb{
+  opacity:1;
+}
+
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
