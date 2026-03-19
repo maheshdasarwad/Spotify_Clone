@@ -16,6 +16,12 @@ const defaultSongs = [
     image: "/arjit.jpg",
     file: "/songs/Laal_Ishq.mp3"
   },
+  {
+    title: "Espresso",
+    artist: "Sabrina Carpenter",
+    image: "/cardphoto/espresso.jpg",
+    file: "/songs/Espresso.mp3"
+  },
 ];
 
 export default function MusicPlayer({
@@ -272,25 +278,44 @@ export default function MusicPlayer({
       {/* CENTER */}
       <div className="flex flex-col items-center w-[500px]">
 
-        <div className="flex mb-2 items-center gap-6">
+        <div className="flex mb-2 items-center gap-7">
 
-          <button onClick={prevSong}>
-            <TbPlayerSkipBackFilled className="cursor-pointer w-5 h-5 hover:scale-110 transition" />
-          </button>
+          <div className="relative group">
+            <button onClick={prevSong}>
+              <TbPlayerSkipBackFilled className="cursor-pointer w-5 h-5 hover:scale-110 transition" />
+            </button>
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#212121] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100">
+              Previous
+            </span>
+          </div>
+          
 
-          <button
-            onClick={togglePlay}
-            className="text-2xl bg-white rounded-full w-10 h-10 flex items-center justify-center hover:scale-110 transition"
-          >
-            {playing
-              ? <TbPlayerPauseFilled className="text-black" />
-              : <TbPlayerPlayFilled className="text-black" />
-            }
-          </button>
-
-          <button onClick={nextSong}>
-            <TbPlayerSkipForwardFilled className="cursor-pointer w-5 h-5 hover:scale-110 transition" />
-          </button>
+          <div className="relative group">
+            <button
+              onClick={togglePlay}
+              className="text-xl bg-white rounded-full w-8 h-8 flex items-center justify-center hover:scale-110 transition"
+            >
+              {playing
+                ? <TbPlayerPauseFilled className="text-black " />
+                  
+                : <TbPlayerPlayFilled className="text-black" />
+              } 
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#212121] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100">
+                {playing ? "Pause" : "Play"}
+              </span>
+            </button>
+          </div>
+          
+          <div className="relative group">
+            <button onClick={nextSong}>
+              <TbPlayerSkipForwardFilled className="cursor-pointer w-5 h-5 hover:scale-110 transition" />
+            </button>
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#212121] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100">
+              Next
+            </span>
+          
+          </div>  
+         
 
         </div>
 
@@ -308,6 +333,8 @@ export default function MusicPlayer({
             style={{ "--progress": `${progress}%` }}
           />
 
+
+
           <span className="text-xs text-gray-400">
             {formatTime(audioRef.current?.duration)}
           </span>
@@ -317,16 +344,21 @@ export default function MusicPlayer({
       </div>
 
       {/* RIGHT */}
-      <div className="flex items-center gap-2 w-[200px] justify-end">
-
-        <img
-          src={muted ? "/mutelogo.png" : "/volume.png"}
-          width={muted ? 24 : 34}
-          height={muted ? 24 : 34}
-          alt="volume"
-          onClick={toggleMute}
-          className="cursor-pointer"
-        />
+      <div className="flex items-center  w-[200px] justify-end">
+        
+        <div className="relative group">
+          <img
+              src={muted ? "/mutelogo.png" : "/volume.png"}
+              width={34}
+              height={34}
+              alt="volume"
+              onClick={toggleMute}
+              className="cursor-pointer"
+          />
+          <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#212121] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100">
+                {muted ? "Unmute" : "Mute"}
+          </span>
+        </div>
 
         <input
           type="range"
@@ -337,7 +369,9 @@ export default function MusicPlayer({
           onChange={changeVolume}
           className="progress-bar w-[120px]"
           style={{ "--progress": `${volume * 100}%` }}
-        />
+        >
+          
+        </input>
 
       </div>
 
