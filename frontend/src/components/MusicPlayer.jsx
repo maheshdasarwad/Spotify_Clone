@@ -290,13 +290,13 @@ export default function MusicPlayer({
           </div>
           
 
-          <div className="relative group">
+           <div className="relative group">
             <button
               onClick={togglePlay}
-              className="text-xl bg-white rounded-full w-8 h-8 flex items-center justify-center hover:scale-110 transition"
+              className="cursor-pointer text-xl bg-white rounded-full w-8 h-8 flex items-center justify-center hover:scale-110 transition "
             >
               {playing
-                ? <TbPlayerPauseFilled className="text-black " />
+                ? <TbPlayerPauseFilled className="text-black" />
                   
                 : <TbPlayerPlayFilled className="text-black" />
               } 
