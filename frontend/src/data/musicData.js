@@ -163,6 +163,16 @@ export const mood = [
   },
 ];
 
+
+export const restAll = [
+  {
+    name: "Maa",
+    role: "Shankar Mahadevan",
+    image: "/cardphoto/taarezameenpar.png",
+    song: "/songs/Maa.mp3",
+  },
+]
+
 // Combine all songs for the music player
 export const allSongs = [
   ...artists.map(item => ({
@@ -191,6 +201,12 @@ export const allSongs = [
   })),
   ...mood.map(item => ({
     title: item.name || "Mood",
+    artist: item.role,
+    image: item.image,
+    file: item.song
+  })),
+  ...restAll.map(item => ({
+    title: item.name || "restAll",
     artist: item.role,
     image: item.image,
     file: item.song
