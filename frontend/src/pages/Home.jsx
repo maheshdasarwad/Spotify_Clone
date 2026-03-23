@@ -5,32 +5,34 @@ import MusicPlayer from '../components/MusicPlayer'
 import { allSongs } from "../data/musicData.js";
 import MainContent from './MainContent.jsx';
 
+const Home = () => {
+  const [currentSong, setCurrentSong] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
-
-const Home = ({ playSong })  => {
-     const [currentSong, setCurrentSong] = useState(null);
+  const handleSearch = (value, shouldShowResults) => {
+    setSearchQuery(value);
+    setShowSearchResults(shouldShowResults);
+  };
 
   return (
-    <div className='flex'>
-      <PageHead />
+    <div className='flex '>
+      <PageHead onSearch={handleSearch} />
       <PageSidebar />
-
       <MainContent
-          currentSong={currentSong} 
-          setCurrentSong={setCurrentSong} 
-        />
+        currentSong={currentSong} 
+        setCurrentSong={setCurrentSong}
+        searchQuery={searchQuery}
+        showSearchResults={showSearchResults}
+      />
       
       <MusicPlayer 
         currentSong={currentSong}
         setCurrentSong={setCurrentSong}
         playlist={allSongs}
       />
-
-      </div>
+    </div>
   )
 }
 
 export default Home
-
-
-

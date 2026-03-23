@@ -135,7 +135,7 @@ export const mood = [
     name: "Love Aaj Kal",
     role: "India's ultimate love playlist ❤️...",
     image: "/lak1.png",
-    song: "/songs/Gehra_Hua.mp3",
+    song: "/songs/Bairan_Banjaare.mp3",
   },
   {
     name: "Wedding Special",

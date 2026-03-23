@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Card from "./Card";
 
-const Section = ({ title, items, round, onPlaySong, currentSong }) => {
+const Section = ({ title, items, round, onPlaySong, currentSong, searchQuery = "" }) => {
   const INITIAL_COUNT = 5;
   const [expanded, setExpanded] = useState(false);
 
   const visibleItems = expanded ? items : items.slice(0, INITIAL_COUNT);
+
+  // Don't show section if no items
+  if (items.length === 0) return null;
 
   return (
     <div className="mb-8">
@@ -32,6 +35,7 @@ const Section = ({ title, items, round, onPlaySong, currentSong }) => {
             round={round}
             isPlaying={currentSong?.title === (item.name || item.title)}
             onPlay={() => onPlaySong(item)}
+            searchQuery={searchQuery}
           />
         ))}
       </div>

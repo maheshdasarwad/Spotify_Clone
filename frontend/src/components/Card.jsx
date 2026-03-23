@@ -1,9 +1,22 @@
 import React from 'react';
 import { TbPlayerPlayFilled } from "react-icons/tb";
 
-const Card = ({ image, title, subtitle, round, onPlay, isPlaying }) => {
+const Card = ({ image, title, subtitle, round, onPlay, isPlaying, searchQuery = "" }) => {
+  
+  // Function to highlight search term in text
+  const highlightText = (text, query) => {
+    if (!query || !text || !query.trim()) return text;
+    
+    const parts = text.split(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'));
+    return parts.map((part, i) => 
+      part.toLowerCase() === query.toLowerCase() ? 
+        <mark key={i} className="bg-green-500 text-white px-0.5 rounded">{part}</mark> : 
+        part
+    );
+  };
+
   return (
-    <div className="p-4 rounded-lg hover:bg-[#282828] transition  group relative">
+    <div className="p-4 rounded-lg hover:bg-[#282828] transition group relative">
       <div className="relative">
         <img
           src={image}
@@ -19,10 +32,10 @@ const Card = ({ image, title, subtitle, round, onPlay, isPlaying }) => {
             onPlay();
           }}
           className="absolute bottom-1 right-1 text-2xl bg-green-500 rounded-full w-12 h-12 cursor-pointer
-                       flex items-center justify-center 
-                       opacity-0 translate-y-2 group-hover:opacity-100 
-                     group-hover:translate-y-0 transition-all duration-300
-                     hover:scale-105 hover:bg-green-400"
+                        flex items-center justify-center 
+                        opacity-0 translate-y-2 group-hover:opacity-100 
+                      group-hover:translate-y-0 transition-all duration-300
+                      hover:scale-105 hover:bg-green-400"
           >
           <TbPlayerPlayFilled className="text-black" />
         </button>
@@ -33,8 +46,15 @@ const Card = ({ image, title, subtitle, round, onPlay, isPlaying }) => {
         )}
       </div>
 
-      <p className="font-semibold mt-3 text-white truncate">{title}</p>
-      <p className="text-sm text-gray-400 truncate">{subtitle}</p>
+      {/* Title with highlight */}
+      <p className="font-semibold mt-3 text-white truncate">
+        {searchQuery ? highlightText(title, searchQuery) : title}
+      </p>
+      
+      {/* Subtitle with highlight */}
+      <p className="text-sm text-gray-400 truncate">
+        {searchQuery ? highlightText(subtitle, searchQuery) : subtitle}
+      </p>
     </div>
   );
 };
