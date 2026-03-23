@@ -163,6 +163,10 @@ export const mood = [
   },
 ];
 
+export const restSongs[
+  {},{},
+]
+
 // Combine all songs for the music player
 export const allSongs = [
   ...artists.map(item => ({
