@@ -7,7 +7,6 @@ const Section = ({ title, items, round, onPlaySong, currentSong, searchQuery = "
 
   const visibleItems = expanded ? items : items.slice(0, INITIAL_COUNT);
 
-  // Don't show section if no items
   if (items.length === 0) return null;
 
   return (
